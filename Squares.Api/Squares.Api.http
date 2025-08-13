@@ -1,14 +1,14 @@
 @Squares.Api_HostAddress = http://localhost:5272
 
-GET {{Squares.Api_HostAddress}}/api/squares/
+GET {{Squares.Api_HostAddress}}/squares/
 Accept: application/json
 
 ###
 
-POST {{Squares.Api_HostAddress}}/api/squares/
+POST {{Squares.Api_HostAddress}}/squares/
 Accept: application/json
 
 ###
 
-DELETE {{Squares.Api_HostAddress}}/api/squares/
+DELETE {{Squares.Api_HostAddress}}/squares/
 Accept: application/json

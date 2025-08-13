@@ -1,5 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.Squares_Api>("squares-api");
+var api = builder.AddProject<Projects.Squares_Api>("squares-api");
+builder.AddNodeApp("react", "../squares.react")
+    .WithReference(api)
+    .WaitFor(api);
 
 builder.Build().Run();

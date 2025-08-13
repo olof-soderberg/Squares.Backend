@@ -5,10 +5,12 @@ using System.Text.Json;
 
 namespace Squares.Infrastructure.Repositories;
 
-public class SquareRepository : ISquareRepository
+public class SquareJsonRepository : ISquareRepository
 {
     private const string filePath = "squares.json";
-    public SquareRepository()
+    private readonly List<Square> squares = new List<Square>();
+
+    public SquareJsonRepository()
     {
         if (File.Exists(filePath))
         {
@@ -16,12 +18,14 @@ public class SquareRepository : ISquareRepository
             {
                 var json = File.ReadAllText(filePath);
                 var deserializedSquares = JsonSerializer.Deserialize<List<Square>>(json);
+                if(deserializedSquares is not null)
+                {
+                    squares = deserializedSquares;
+                };
             }
             catch (Exception ex)
             {
-                // Log error if logger is available
                 Console.Error.WriteLine($"Error loading squares: {ex.Message}");
-                // Initialize empty dictionary if loading fails
             }
         }
     }
@@ -29,8 +33,11 @@ public class SquareRepository : ISquareRepository
     public async ValueTask<IEnumerable<Square>> GetAllSquares(CancellationToken ct)
     {
         using FileStream stream = File.OpenRead(filePath);
-        return await JsonSerializer.DeserializeAsync<List<Square>>(stream, cancellationToken: ct) ?? new List<Square>();
+        return await JsonSerializer.DeserializeAsync<List<Square>>(stream, cancellationToken: ct) ?? Enumerable.Empty<Square>();
     }
+
+    public ValueTask<Square> GetLastSquare(CancellationToken ct)
+        => ValueTask.FromResult(squares.OrderByDescending(x => x.Position).First());
 
     public async IAsyncEnumerable<Square> GetAllSquaresAsyncStream([EnumeratorCancellation] CancellationToken ct)
     {
@@ -54,13 +61,10 @@ public class SquareRepository : ISquareRepository
 
     public async ValueTask<Square> SaveNewSquare(Square square, CancellationToken ct)
     {
-        var squares = (await GetAllSquares(ct)).ToList();
-        var lastSquare = squares.OrderByDescending(x => x.Position).FirstOrDefault();
-
         squares.Add(new Square
         (
             Color: square.Color,
-            Position:square.Position
+            Position: square.Position
         ));
 
         await using FileStream stream = File.Create(filePath);
@@ -71,6 +75,6 @@ public class SquareRepository : ISquareRepository
     public async ValueTask DeleteAllSquares(CancellationToken ct)
     {
         await using FileStream stream = File.Create(filePath);
-        await JsonSerializer.SerializeAsync(stream, new List<Square>(), cancellationToken: ct);
+        await JsonSerializer.SerializeAsync(stream, Enumerable.Empty<Square>(), cancellationToken: ct);
     }
 }

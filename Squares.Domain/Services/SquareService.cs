@@ -28,8 +28,7 @@ public class SquareService : ISquareService
     {
         try
         {
-            var squares = await squareRepository.GetAllSquares(ct);
-            var lastSquare = squares.OrderByDescending(x => x.Position).FirstOrDefault();
+            var lastSquare = await squareRepository.GetLastSquare(ct);
 
             var color = GetRandomColorHexString();
 
@@ -41,7 +40,7 @@ public class SquareService : ISquareService
             var square = new Square
             (
                 Color: color,
-                Position: squares.Count()
+                Position: lastSquare.Position + 1
             );
 
             var newSquare = await squareRepository.SaveNewSquare(square, ct);

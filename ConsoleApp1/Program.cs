@@ -3,7 +3,7 @@ using Squares.Api.Controllers;
 using Squares.Domain.Services;
 using Squares.Infrastructure.Repositories;
 
-var controller = new SquaresController(new SquareService(new SquareRepository()));
+var controller = new SquaresController(new SquareService(new SquareJsonRepository()));
 
 Console.WriteLine("Press any button to begin..");
 Console.ReadLine();

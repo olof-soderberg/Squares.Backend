@@ -16,6 +16,11 @@ public class SquaresController : ControllerBase
         _repository = repository;
     }
 
+    /// <summary>
+    /// Fetches squares from memory
+    /// </summary>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SquareDto>>> GetSquares(CancellationToken ct)
     {
@@ -24,6 +29,11 @@ public class SquaresController : ControllerBase
         return Ok(squareDtos);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     [HttpGet("stream")]
     public async IAsyncEnumerable<SquareDto> GetSquaresAsyncStream([EnumeratorCancellation] CancellationToken ct)
     {
@@ -34,16 +44,26 @@ public class SquaresController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Creates and returns a new square with different color from the last
+    /// </summary>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     [HttpPost]
-    public async Task<ActionResult<SquareDto>> SaveNewSquare(CancellationToken ct)
+    public async ValueTask<ActionResult<SquareDto>> SaveNewSquare(CancellationToken ct)
     {
         var square = await _repository.SaveNewSquare(ct);
         var squareDto = new SquareDto(square.Color, square.Position);
         return Ok(squareDto);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ct"></param>
+    /// <returns></returns>
     [HttpDelete]
-    public async Task<IActionResult> ClearAllSquares(CancellationToken ct)
+    public async ValueTask<IActionResult> ClearAllSquares(CancellationToken ct)
     {
         await _repository.DeleteAllSquares(ct);
         return NoContent();

@@ -1,4 +1,5 @@
 
+using Scalar.AspNetCore;
 using Squares.Api.Middlewares;
 using Squares.Domain.Repositories;
 using Squares.Domain.Services;
@@ -12,7 +13,6 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddSingleton<ISquareRepository, SquareJsonRepository>();
@@ -26,6 +26,7 @@ app.MapDefaultEndpoints();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
     app.UseCors(builder =>
     {
         builder.AllowAnyOrigin()

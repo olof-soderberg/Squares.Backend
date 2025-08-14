@@ -26,31 +26,28 @@ public class SquareService : ISquareService
 
     public async ValueTask<Square> SaveNewSquare(CancellationToken ct)
     {
-        try
+        var position = 0;
+        var color = GetRandomColorHexString();
+
+        var lastSquare = await squareRepository.GetLastSquare(ct);
+        if(lastSquare != null)
         {
-            var lastSquare = await squareRepository.GetLastSquare(ct);
+            position = lastSquare.Position + 1;
 
-            var color = GetRandomColorHexString();
-
-            while(lastSquare?.Color == color)
+            while (lastSquare?.Color == color)
             {
                 color = GetRandomColorHexString();
             }
-
-            var square = new Square
-            (
-                Color: color,
-                Position: lastSquare.Position + 1
-            );
-
-            var newSquare = await squareRepository.SaveNewSquare(square, ct);
-            return newSquare;
         }
-        catch (Exception ex) when (ex is not OperationCanceledException)
-        {
-            // Log exception here if you have a logger
-            throw new InvalidOperationException($"Error saving new square: {ex.Message}", ex);
-        }
+
+        var square = new Square
+        (
+            Color: color,
+            Position: position
+        );
+
+        var newSquare = await squareRepository.SaveNewSquare(square, ct);
+        return newSquare;
     }
 
     private string GetRandomColorHexString()

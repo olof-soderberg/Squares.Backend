@@ -54,27 +54,19 @@ public class SquareJsonRepository : ISquareRepository
 
     public async ValueTask<Square?> GetLastSquare(CancellationToken ct)
     {
+        await _semaphore.WaitAsync(ct);
         try
         {
-            await _semaphore.WaitAsync(ct);
-            try
-            {
-                if (!_squares.Any())
-                {
-                    return null;
-                }
-                
-                return _squares.OrderByDescending(x => x.Position).First();
-            }
-            finally
-            {
-                _semaphore.Release();
-            }
+            return _squares.LastOrDefault();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error retrieving last square: {Message}", ex.Message);
             throw;
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 
@@ -85,27 +77,13 @@ public class SquareJsonRepository : ISquareRepository
             yield break;
         }
 
-        IAsyncEnumerable<Square> squaresEnumerable;
-
         await _semaphore.WaitAsync(ct);
 
         try
         {
             await using var stream = new FileStream(FILE_PATH, FileMode.Open, FileAccess.Read, FileShare.Read);
-            squaresEnumerable = JsonSerializer.DeserializeAsyncEnumerable<Square>(stream, _serializerOptions, ct);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error streaming squares: {Message}", ex.Message);
-            throw;
-        }
-        finally
-        {
-            _semaphore.Release();
-        }
+            var squaresEnumerable = JsonSerializer.DeserializeAsyncEnumerable<Square>(stream, _serializerOptions, ct);
 
-        if (squaresEnumerable != null)
-        {
             await foreach (var square in squaresEnumerable.WithCancellation(ct))
             {
                 ct.ThrowIfCancellationRequested();
@@ -114,6 +92,10 @@ public class SquareJsonRepository : ISquareRepository
                     yield return square;
                 }
             }
+        }
+        finally
+        {
+            _semaphore.Release();
         }
     }
 
@@ -222,7 +204,7 @@ public class SquareJsonRepository : ISquareRepository
         {
             if (File.Exists(FILE_PATH))
             {
-                string backupPath = $"{FILE_PATH}.bak.{DateTime.Now:yyyyMMddHHmmss}";
+                string backupPath = $"{FILE_PATH}.bak.{DateTimeOffset.UtcNow:yyyyMMddHHmmss}";
                 File.Copy(FILE_PATH, backupPath);
                 _logger.LogInformation("Created backup of squares file at {BackupPath}", backupPath);
             }

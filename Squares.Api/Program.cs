@@ -1,6 +1,7 @@
 
 using Scalar.AspNetCore;
 using Squares.Api.Middlewares;
+using Squares.Domain.Helpers;
 using Squares.Domain.Repositories;
 using Squares.Domain.Services;
 using Squares.Infrastructure.Repositories;
@@ -17,6 +18,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddSingleton<ISquareRepository, SquareJsonRepository>();
 builder.Services.AddScoped<ISquareService, SquareService>();
+builder.Services.AddScoped<IColorGenerator, ColorGenerator>();
 
 var app = builder.Build();
 

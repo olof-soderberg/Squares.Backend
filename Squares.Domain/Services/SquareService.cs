@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Squares.Domain.Helpers;
 using Squares.Domain.Models;
 using Squares.Domain.Repositories;
 
@@ -6,13 +7,13 @@ namespace Squares.Domain.Services;
 
 public class SquareService : ISquareService
 {
-    private static readonly Random rand = new Random();
-    private const int rgbMaxValue = 255;
-    private ISquareRepository squareRepository;
+    private readonly ISquareRepository squareRepository;
+    private readonly IColorGenerator colorGenerator;
 
-    public SquareService(ISquareRepository squareRepository)
+    public SquareService(ISquareRepository squareRepository, IColorGenerator colorGenerator)
     {
         this.squareRepository = squareRepository;
+        this.colorGenerator = colorGenerator;
     }
 
     public async ValueTask<IEnumerable<Square>> GetAllSquares(CancellationToken ct)
@@ -27,7 +28,7 @@ public class SquareService : ISquareService
     public async ValueTask<Square> SaveNewSquare(CancellationToken ct)
     {
         var position = 0;
-        var color = GetRandomColorHexString();
+        var color = colorGenerator.GetRandomColorHexString();
 
         var lastSquare = await squareRepository.GetLastSquare(ct);
         if(lastSquare != null)
@@ -36,7 +37,7 @@ public class SquareService : ISquareService
 
             while (lastSquare?.Color == color)
             {
-                color = GetRandomColorHexString();
+                color = colorGenerator.GetRandomColorHexString();
             }
         }
 
@@ -48,11 +49,5 @@ public class SquareService : ISquareService
 
         var newSquare = await squareRepository.SaveNewSquare(square, ct);
         return newSquare;
-    }
-
-    private string GetRandomColorHexString()
-    {
-        var color = Color.FromArgb(rand.Next(rgbMaxValue), rand.Next(rgbMaxValue), rand.Next(rgbMaxValue));
-        return ColorTranslator.ToHtml(color);
     }
 }

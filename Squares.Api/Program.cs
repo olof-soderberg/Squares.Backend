@@ -29,13 +29,12 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
-    app.UseCors(builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
 }
+
+// Enabled for testing in release mode
+app.UseCors(x => x.AllowAnyHeader()
+    .AllowAnyMethod()
+    .WithOrigins("http://localhost:3001"));
 
 app.UseHttpsRedirection();
 

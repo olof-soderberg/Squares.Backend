@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squares.AppHost", "Squares.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squares.ServiceDefaults", "Squares.ServiceDefaults\Squares.ServiceDefaults.csproj", "{088AE1EF-59D1-4766-9654-84225996830E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamTestApplication", "ConsoleApp1\StreamTestApplication.csproj", "{78F7D843-212F-448F-9C88-72381DF10644}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamTestApplication", "Squares.StreamTestApplication\StreamTestApplication.csproj", "{78F7D843-212F-448F-9C88-72381DF10644}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squares.Domain", "Squares.Domain\Squares.Domain.csproj", "{9D714A5D-C92B-41FB-B97E-61E5FF736000}"
 EndProject

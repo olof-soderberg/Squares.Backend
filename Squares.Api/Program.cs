@@ -34,7 +34,7 @@ if (app.Environment.IsDevelopment())
 // Enabled for testing in release mode
 app.UseCors(x => x.AllowAnyHeader()
     .AllowAnyMethod()
-    .WithOrigins("http://localhost:3001"));
+    .WithOrigins("http://localhost:3000"));
 
 app.UseHttpsRedirection();
 

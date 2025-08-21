@@ -18,11 +18,9 @@ WORKDIR /src/Squares.Api
 RUN dotnet publish -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
-ENV ASPNETCORE_HTTP_PORTS=5272
-EXPOSE 5272
+ENV ASPNETCORE_HTTP_PORTS=7280
+EXPOSE 7280
 WORKDIR /app
 COPY --from=build /app/publish .
-
-EXPOSE 80
 
 ENTRYPOINT ["dotnet", "Squares.Api.dll"]

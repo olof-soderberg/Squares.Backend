@@ -11,8 +11,12 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 
 ### Built With
 
-* [![Asp.Net Core][Asp.net]][Asp.net-url]
-* [![React][React.js]][React-url]
+
+<a href="https://learn.microsoft.com/en-us/dotnet/core/install/windows">
+  <img width="100" height="100" alt="Asp.Net" src="https://github.com/user-attachments/assets/1161ed10-b863-4e42-a2d1-c3f758e118d3" />
+<a/>
+
+[![React][React.js]][React-url]
 
 # Getting Started
 
@@ -89,5 +93,5 @@ That way there are less dependencies, but you still need Docker.
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Asp.net]: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/250px-.NET_Core_Logo.svg.png
+[Asp.net]: https://www.pngmart.com/files/23/Net-Logo-PNG-Image.png
 [Asp.net-url]: https://dotnet.microsoft.com/en-us/apps/aspnet

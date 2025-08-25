@@ -1,12 +1,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`, `project_license`
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+This is the Api for the application Squares.
+Squares is a project driven by passion for the creation of potentially an infinite amount of squares, each with a different color from the last!
+Functionality includes, but might not be limited to, adding and clearing all squares.
 
 
 ### Built With
@@ -16,12 +13,9 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
   <img width="100" height="100" alt="Asp.Net" src="https://github.com/user-attachments/assets/1161ed10-b863-4e42-a2d1-c3f758e118d3" />
 <a/>
 
-[![React][React.js]][React-url]
-
 # Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Download the code and follow installation steps below
 
 ## Prerequisites
 
@@ -38,33 +32,19 @@ That way there are less dependencies, but you still need Docker.
   ```sh
   winget install -e --id Microsoft.DotNet.AspNetCore.9
   ```
-* Node/NPM
-  ```sh
-  winget install -e --id OpenJS.NodeJS
-  ```
 
 ## Installation
 
 ### Docker 
 1. Open up a terminal in main folder
-2. Build React app docker image
-   ```sh
-   docker build -f squares.react/Dockerfile -t squares-react .   
-   ```
-3. Build Api docker image
+2. Build Api docker image
    ```sh
    docker build -f Squares.Api/Dockerfile -t squares-api .
    ```
-4. Run React app docker container
-   ```js
-   docker run -p 3000:3000 squares-react
-   ```
-5. Run Api docker container
+3. Run Api docker container
    ```sh
    docker run -p 7280:7280 --name squares squares-api  
    ```
-6. Open browser [http://localhost:3000)](http://localhost:3000)
-
 ### Non Docker
 1. Open up a terminal in main folder
 2. Build Api 
@@ -75,16 +55,6 @@ That way there are less dependencies, but you still need Docker.
    ```sh
    dotnet run
    ```
-4. Go to folder /squares.react
-5. Build React app
-   ```sh
-   npm install
-   ```
-6. Run React app
-   ```sh
-   npm run dev
-   ```
-7. Open browser [http://localhost:3000)](http://localhost:3000)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -53,7 +53,7 @@ That way there are less dependencies, but you still need Docker.
    ```
 3. Run Api
    ```sh
-   dotnet run --project .\Squares.Api\Squares.Api.csproj
+   dotnet run --project .\Squares.Api\Squares.Api.csproj --urls http://localhost:7280
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

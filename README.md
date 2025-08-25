@@ -65,8 +65,13 @@ That way there are less dependencies, but you still need Docker in some form to 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Considerations
+### These are some, but not all, considerations in general and about what could have been added or changed 
 
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
+- There is an endpoint that allows streaming the data from the json file, thus minimizing memory allocation. As of now, this has not been implemented in the frontend.
+- There could have been CI/CD pipeline setup with GitHub Actions, to run the tests, etc. May be added in the future.
+- The two repos could have been merged for a unified and clearer installation. I like to keep them seperated though.
+
+
 [Asp.net]: https://www.pngmart.com/files/23/Net-Logo-PNG-Image.png
 [Asp.net-url]: https://dotnet.microsoft.com/en-us/apps/aspnet

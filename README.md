@@ -2,6 +2,7 @@
 ## About The Project
 
 This is the Api for the application Squares.
+<br>
 Squares is a project driven by passion for the creation of potentially an infinite amount of squares, each with a different color from the last!
 Functionality includes, but might not be limited to, adding and clearing all squares.
 

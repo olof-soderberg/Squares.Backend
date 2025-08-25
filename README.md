@@ -5,9 +5,12 @@ This is the Api for the application Squares.
 Squares is a project driven by passion for the creation of potentially an infinite amount of squares, each with a different color from the last!
 Functionality includes, but might not be limited to, adding and clearing all squares.
 
+<img width="381" height="356" alt="image" src="https://github.com/user-attachments/assets/d1f5c9ac-e368-4e7e-a55a-47bfd088157b" />
+
+
+
 
 ### Built With
-
 
 <a href="https://learn.microsoft.com/en-us/dotnet/core/install/windows">
   <img width="100" height="100" alt="Asp.Net" src="https://github.com/user-attachments/assets/1161ed10-b863-4e42-a2d1-c3f758e118d3" />
@@ -15,15 +18,18 @@ Functionality includes, but might not be limited to, adding and clearing all squ
 
 # Getting Started
 
-Download the code and follow installation steps below
+Download the code and follow installation steps below. 
+<br>
+**Obs**. This guide is for Windows only at the moment.
 
 ## Prerequisites
 
 The easiest way of running this app is by building and running both the api and react app with docker.
-That way there are less dependencies, but you still need Docker.
+That way there are less dependencies, but you still need Docker in some form to build the images and run the containers.
+
 
 ### Docker
-* Docker
+* Docker 
   ```sh
   winget install -e --id Docker.DockerDesktop
   ```

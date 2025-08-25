@@ -21,6 +21,7 @@ builder.Services.AddScoped<ISquareService, SquareService>();
 builder.Services.AddScoped<IColorGenerator, ColorGenerator>();
 
 var app = builder.Build();
+app.Logger.LogInformation("Building application...");
 
 app.MapDefaultEndpoints();
 
@@ -44,4 +45,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.Logger.LogInformation("Starting the app");
 app.Run();

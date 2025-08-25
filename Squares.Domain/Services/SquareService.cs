@@ -35,7 +35,7 @@ public class SquareService : ISquareService
         {
             position = lastSquare.Position + 1;
 
-            while (lastSquare?.Color == color)
+            while (lastSquare.Color == color)
             {
                 color = colorGenerator.GetRandomColorHexString();
             }

@@ -69,8 +69,11 @@ That way there are less dependencies, but you still need Docker in some form to 
 ### These are some, but not all, considerations in general and about what could have been added or changed 
 
 - There is an endpoint that allows streaming the data from the json file, thus minimizing memory allocation. As of now, this has not been implemented in the frontend.
+  The endpoint can be somewhat tested by running the console application StreamTestApplication.
 - There could have been CI/CD pipeline setup with GitHub Actions, to run the tests, etc. May be added in the future.
 - The two repos could have been merged for a unified and clearer installation. I like to keep them seperated though.
+- Apparently Microsoft.AspNetCore.OpenApi generator doesn’t support XML comments with .NET 9. Therefore they are not part of the generated document, but should be added in .NET 10.
+  One could of course use another OpenApi generator instead, but in this case I thought it wasn't that important.
 
 
 [Asp.net]: https://www.pngmart.com/files/23/Net-Logo-PNG-Image.png

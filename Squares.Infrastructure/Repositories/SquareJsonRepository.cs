@@ -162,7 +162,7 @@ public class SquareJsonRepository : ISquareRepository
             {
                 _squares.Clear();
                 _squares.AddRange(deserializedSquares);
-                _logger.LogInformation("Successfully loaded {Count} squares from file", deserializedSquares.Count);
+                _logger.LogInformation("Successfully loaded {Count} squares from file", deserializedSquares.Count());
             }
         }
         catch (JsonException ex)

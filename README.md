@@ -75,6 +75,7 @@ That way there are less dependencies, but you still need Docker in some form to 
 - Apparently Microsoft.AspNetCore.OpenApi generator doesn’t support XML comments with .NET 9. Therefore they are not part of the generated document, but should be added in .NET 10.
   One could of course use another OpenApi generator instead, but in this case I thought it wasn't that important.
 - If many requests are being made at the same time there could be problems writing to the json file. This will return an error to the webapp. There could easily be retry logic applied here.
+- Grid matrix could have been stored and calculated on the backend instead of in the browser.
 
 [Asp.net]: https://www.pngmart.com/files/23/Net-Logo-PNG-Image.png
 [Asp.net-url]: https://dotnet.microsoft.com/en-us/apps/aspnet

@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squares.Infrastructure", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squares.Domain.UnitTests", "Squares.Domain.UnitTests\Squares.Domain.UnitTests.csproj", "{E5151F26-B9ED-4954-845E-5AB6544200D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StressTestApplication", "StressTestApplication\StressTestApplication.csproj", "{86024676-BA86-49F0-AE50-EA762AA3B4F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StressTestApplication", "Squares.StressTestApplication\StressTestApplication.csproj", "{86024676-BA86-49F0-AE50-EA762AA3B4F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

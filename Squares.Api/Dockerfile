@@ -8,6 +8,7 @@ COPY ["Squares.Infrastructure/*.csproj", "./Squares.Infrastructure/"]
 COPY ["Squares.AppHost/*.csproj", "./Squares.AppHost/"]
 COPY ["Squares.ServiceDefaults/*.csproj", "./Squares.ServiceDefaults/"]
 COPY ["Squares.StreamTestApplication/*.csproj", "./Squares.StreamTestApplication/"]
+COPY ["Squares.StressTestApplication/*.csproj", "./Squares.StressTestApplication/"]
 COPY ["Squares.Domain.UnitTests/*.csproj", "./Squares.Domain.UnitTests/"]
 
 RUN dotnet restore Squares.sln

@@ -1,27 +1,26 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Squares.Api.Controllers;
-using Squares.Domain.Helpers;
-using Squares.Domain.Repositories;
-using Squares.Domain.Services;
-using Squares.Infrastructure.Repositories;
+using Squares.Api.DTOs;
+using System.Text.Json;
 
 var services = new ServiceCollection();
-services.AddScoped<ISquareService, SquareService>();
-services.AddSingleton<ISquareRepository, SquareJsonRepository>();
-services.AddScoped<IColorGenerator, ColorGenerator>();
-services.AddLogging();
-
+services.AddHttpClient();
 var serviceProvider = services.BuildServiceProvider();
-
-var controller = new SquaresController(serviceProvider.GetService<ISquareService>());
+var clientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
 
 Console.WriteLine("Press any button to begin..");
 Console.ReadLine();
 
-await foreach(var square in controller.GetSquaresAsyncStream(default))
-{
-    Console.WriteLine($"Square Color: {square.Color}");
-}
+var client = clientFactory.CreateClient();
+var stream = await client.GetStreamAsync("http://localhost:7280/squares/stream");
 
+var squares = JsonSerializer.DeserializeAsyncEnumerable<SquareDto>(stream, new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+});
+
+await foreach (var square in squares)
+{
+    Console.WriteLine($"Square Position: {square.Position}, Color: {square.Color}");
+}
 
 Console.ReadLine();
